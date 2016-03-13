@@ -1,0 +1,60 @@
+@import 'src/sass/components/define.scss';
+
+
+
+$z-header: 9999;
+$z-footer: 9999;
+
+.header{
+	width: 100%;
+	height: 50px;
+	background-color: $main_color;
+	max-width: 730px;
+	margin: 0 auto;
+	position: relative;
+	z-index: $z-header;
+	&__logo{
+		float: left;
+		@include setImg(30, 30);
+		background-image: url(../img/logo-app.png);
+		margin: 10px 0 0 15px;
+		a{
+			display: block;
+			height: 100%;
+		}
+	}
+	&__list{
+		float: right;
+	}
+	&__item{
+		display: inline-block;
+		line-height: 50px;
+		margin: 0 10px;
+		font-size: .8rem;
+	}
+	&__link{
+		text-decoration: none;
+		color: #fff;
+	}
+	i{
+		color: #fff;
+		vertical-align: sub;
+		cursor: pointer;
+	}
+}
+
+.footer{
+	text-align: center;
+	width: 100%;
+	height: 50px;
+	color: #fff;
+	background-color: #272727;
+	position: fixed;
+	left: 0;
+	bottom: 0;
+	z-index: $z-footer;
+	&__copy{
+		line-height: 50px;
+	}
+}
+
