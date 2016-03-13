@@ -9,12 +9,18 @@ const webshot = require('webshot');
 const fs      = require('fs');
 const Gyazo  = require('gyazo-api');
 const TOKEN = require('./config');
+const getTitle = require('./lib/gettitle');
 const client = new Gyazo(TOKEN);
 const FILENAME = 'output.png';
 const TARGET_URL = process.argv[2];
 
 let renderStream = webshot(TARGET_URL);
 let file = fs.createWriteStream(FILENAME, {encoding: 'binary'});
+console.log('downloading...');
+
+getTitle(TARGET_URL, (title) => {
+  console.log(title);
+});
 
 renderStream.on('data', (data) => {
   file.write(data.toString('binary'), 'binary');
