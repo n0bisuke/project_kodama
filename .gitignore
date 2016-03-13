@@ -1,6 +1,7 @@
 #file ignore
 Thumbs.db
 .DS_Store
+config.js
 
 #directory ignore
 .sass-cache/
