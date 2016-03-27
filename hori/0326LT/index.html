@@ -1,0 +1,241 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+
+		<title>BNB教育ツール1</title>
+
+		<meta name="description" content="A framework for easily creating beautiful presentations using HTML">
+		<meta name="author" content="Hakim El Hattab">
+
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+
+		<link rel="stylesheet" href="css/reveal.css">
+		<link rel="stylesheet" href="css/theme/black.css" id="theme">
+
+		<!-- Code syntax highlighting -->
+		<link rel="stylesheet" href="lib/css/zenburn.css">
+
+		<!-- Printing and PDF exports -->
+		<script>
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		</script>
+
+		<!--[if lt IE 9]>
+		<script src="lib/js/html5shiv.js"></script>
+		<![endif]-->
+
+		<style>
+			.text{
+				text-align: left;
+				font-size: 34px !important;
+			}
+
+			.text-center{
+				text-align: center;
+			}
+
+			table .th-text{
+				font-size: 26px;
+				text-align: center;
+			}
+			table .td-text{
+				font-size: 24px;
+			}
+
+			.text_small{
+				font-size: 28px !important;
+				text-align: left;
+				color: red;
+			}
+
+			.text_small_2{
+				font-size: 28px !important;
+				line-height: 48px !important;
+				text-align: left;
+				border-bottom: solid 1px #fff !important;
+			}
+		</style>
+	</head>
+
+	<body>
+
+		<div class="reveal">
+
+			<!-- Any section element inside of this container is displayed as a slide -->
+			<div class="slides">
+				<section>
+					<h2>卒業制作進捗報告</h2>
+					<h4>提出まであと1ヶ月半くらいらしい。</h4>
+					
+					<p>
+						Created by <a href="https://www.facebook.com/masanari.hori">ホリマサナリ</a>
+					</p>
+				</section>
+
+
+				<section>
+					<h2>これまでの流れ</h2>
+					<p class="text">2月終わり頃：チューター決まる。</p>
+					<p class="text">チューター決定から1週間：企画駄目出し喰らう。</p>
+					<p class="text">チューター決定から2週間：3日で企画をゼロから作り直して企画OKもらう。</p>
+					<p class="text">チューター決定から3週目：やっと開発開始。（←イマココ）</p>
+				</section>
+
+
+				<section>
+					<h2>卒業制作内容</h2>
+					<p class="text">botと会話して、衝動買いを抑えられる（かもしれない）アプリ。ついでに貯金も（あくまでついで、です。）</p>
+					<p class="text">アプリ名：考え中…</p>
+					<p class="text_small">※アプリって言ってますが、webとスマホで動かせるwebサービスです。</p>
+				</section>
+
+
+				<section>
+					<h2>アプリの流れ（イメージ）</h2>
+					<img src="img.jpg" alt="">
+					<p class="text">こんなかんじで、「衝動買いしそうだ！」という状況がスタート地点です。</p>
+				</section>
+
+				<section>
+					<h2>使用言語・技術（予定）</h2>
+					<p class="text">javascript：お金の計算など動的操作のため。</p>
+					<p class="text">milkcooca：botとのチャット機能のため。</p>
+					<p class="text">Node.js：Amazonから商品データをクローリングするため。</p>
+					<p class="text">pushnate（service worker）：webプッシュ通知を行うため。</p>
+					
+				</section>
+
+				<section>
+					<h2>現状の進捗状況</h2>
+					<p class="text">javascriptでのお金の計算それなりに完成。</p>
+					<p class="text">botチャット：某H笠さんの課題をパクり、しっかり動作。完成？</p>
+					<p class="text">amazonからデータを取得 @Node.js：ターミナル上では動作。HTMLファイルに吐き出して表示するところを2週間程度でやっておきたい。。</p>
+					<p class="text">pushnateでのプッシュ通知：実験的に行ったものでは成功。https通信環境下ではまだ未実装。こちらもhttps環境で4月末までにはテストしておきたい。</p>
+					<p class="text">デザイン：まだ何もしてません。知り合いのつてを頼って、美大の学生にデザインしてもらう予定。</p>
+				</section>
+
+				<section>
+					<h2>botのデモ</h2>
+				</section>
+
+				<section>
+					<h2>今後の予定</h2>
+					<p class="text">4/10まで：Node.jsでのクローリングを実装（とりあえずデータを拾ってHTMLに表示するところまで）・その他のjs周りの動きをチェック。デザイン周り完成。</p>
+					<p class="text">4/25まで ：pushnateでwebプッシュ通知を実装。</p>
+					<p class="text">5/14まで：Node.jsのクローリングをリアルタイムに行えるようにする。</p>
+				</section>
+
+
+				<section>
+					<h2>将来的に</h2>
+					<p>機械学習でbotをリアルの人間にする。</p>
+					
+				</section>
+
+				<section>
+					<h2>ありがとうございました！</h2>
+				</section>
+
+
+
+
+				<!-- <section>
+					<h2>社会人・企業人としての心得</h2>
+					<table>
+						<thead>
+							<tr>
+								<th class="th-text"></th>
+								<th class="th-text">＜内容＞</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td class="td-text">1</td>
+								<td class="td-text">自分の意見や主張を持ち、自立心を持つ。</td>
+							</tr>
+							<tr>
+								<td class="td-text">2</td>
+								<td class="td-text">社会や会社の仕組みを理解し、社会常識を身につける。</td>
+							</tr>
+							<tr>
+								<td class="td-text">3</td>
+								<td class="td-text">常にアンテナを磨き、時代感覚を身につける。</td>
+							</tr>
+							<tr>
+								<td class="td-text">4</td>
+								<td class="td-text">他人と協力、協調する。</td>
+							</tr>
+							<tr>
+								<td class="td-text">5</td>
+								<td class="td-text">実行するために行動する。行動なきところに成果なし。</td>
+							</tr>
+							<tr>
+								<td class="td-text">6</td>
+								<td class="td-text">行動には責任を持つ。</td>
+							</tr>
+						</tbody>
+					</table>
+				</section> -->
+
+
+
+				
+
+				<!-- Example of nested vertical slides -->
+				
+
+				
+
+			
+
+
+
+				
+
+			
+
+
+
+			</div>
+
+		</div>
+
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.js"></script>
+
+		<script>
+
+			// Full list of configuration options available at:
+			// https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				controls: true,
+				progress: true,
+				history: true,
+				center: true,
+
+				transition: 'slide', // none/fade/slide/convex/concave/zoom
+
+				// Optional reveal.js plugins
+				dependencies: [
+					{ src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+					{ src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+					{ src: 'plugin/zoom-js/zoom.js', async: true },
+					{ src: 'plugin/notes/notes.js', async: true }
+				]
+			});
+
+		</script>
+
+	</body>
+</html>
