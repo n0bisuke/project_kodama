@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta charset="UTF-8">
+        <title>botとチャット</title>
+        <link rel="shortcut icon" href="http://gsacademy.tokyo/favicon.ico">
+        <link rel="stylesheet" href="css/normalize.min.css">
+        <link rel="stylesheet" href="css/style.css">
+        <!-- jQuery読み込み -->
+        <script src="js/jquery-2.1.4.min.js"></script>
+        <!-- milkcocoa読み込み -->
+        <script src="https://cdn.mlkcca.com/v2.0.0/milkcocoa.js"></script>
+        <script src="js/time.js"></script>
+        <script>
+            $(function () {
+                //1.ミルクココアインスタンスを作成（データを送受信するために必要）
+                var milkcocoa = new MilkCocoa('iceiicr39v3.mlkcca.com');
+
+                //2."message"データストアを作成
+                var ds = milkcocoa.dataStore("message");
+
+                //3."message"データストアからメッセージを取ってくる
+                //historyという変数にmessageデータストアからメッセージを取得して入れる。
+                var history = ds.history();
+                //ソートは新しい順
+                history.sort("asc");
+                //コールバック関数function(data)にデータを返す
+                history.on('data',function(data){
+                //console.log(data);
+
+                //forEach(callback)でdataにはいっているデータ（配列）内の各要素に対してrenderMessage(data)を走らせる
+                    data.forEach(function (data) {
+                        renderMessage(data);
+                    });
+                });
+
+                history.on('end',function(){
+//                    console.log('end');
+                });
+                history.on('error',function(err){
+//                    console.error(err);
+                });
+                history.run();
+
+
+
+                //4."message"データストアのpushイベントを監視
+                ds.on("push", function (e) {
+                    renderMessage(e);
+                });
+                var last_message = "dummy";
+
+                function renderMessage(message) {
+                    var speaker_name = message.value.name;
+//                    console.log("speaker_name: " + speaker_name);
+                    if(speaker_name === "自分"){
+                        var speaker_html = '<p class="message myself"><span class="speaker-icon"><img src="images/speaker3.png" alt="' + speaker_name +'"><span class="speaker-name">' + speaker_name + '</span></span>';
+                        var message_html = '<span class="message-content">' + escapeHTML(message.value.content) + '</span>';
+                        var date_html = '';
+                        if (message.value.date) {
+                            date_html = '<span class="timestamp-right">' + escapeHTML(jpDateTime(message.value.date)) + '</span></p>';
+                        }
+                    } else {
+                        var speaker_html = '<p class="message"><span class="speaker-icon"><img src="images/speaker1.png" alt="' + speaker_name + '"><span class="speaker-name">' + speaker_name + '</span></span>';
+                        var message_html = '<span class="message-content">' + escapeHTML(message.value.content) + '</span>';
+                        var date_html = '';
+                        if (message.value.date) {
+                            date_html = '<span class="timestamp">' + escapeHTML(jpDateTime(message.value.date)) + '</span></p>';
+                        }
+                    }
+
+                    $("#" + last_message).after('<div id="' + message.id + '" class="post">' + speaker_html + message_html + date_html + '</div>');
+                    last_message = message.id;
+                    autoScroll();
+                }
+
+                function autoScroll() {
+                    // document 最下部までスクロール
+                    var pageTop = $(window).scrollTop();// 確認用
+//                    console.log("pageTop: " + pageTop);
+                    var documentTop = $(document).scrollTop(); // 確認用
+//                    console.log("documentTop: " + documentTop);
+                    var pageHeight = $(window).height(); // 確認用
+//                    console.log("pageHeight: " + pageHeight);
+                    var documentHeight = $(document).height(); // 確認用
+//                    console.log("documentHeight: " + documentHeight);
+                    var pageBottom = documentTop + documentHeight; // ページ最下部を取得
+//                    console.log("pageBottom: " + pageBottom);
+                    $('html, body').stop().animate({scrollTop:documentHeight},300);
+                }
+
+
+
+                function post() {
+                    var content = escapeHTML($("#content").val());
+                    osamuCommentHub(content);
+                }
+
+                ninaOnChat = 0;
+
+                function osamuCommentHub(content) {
+                    //5."message"データストアにメッセージをプッシュする
+                    if(ninaOnChat == 0){
+                        if (content && content !== "") {
+                            osamuComment(content);
+                        }
+                        if (content == "衝動買いしそう") {
+                            ninaHelloDelay();
+                            ninaOnChat = 1;
+                        }
+                    } else if(ninaOnChat == 1) {
+                        if (content == "もう買いません") {
+                            osamuComment(content);
+                            ninaOnChat = 0;
+                        } else if (content && content !== "") {
+                            osamuComment(content);
+                            postDelay();
+                        }
+                    }
+                }
+
+                function osamuComment(content) {
+                    ds.push({
+                        name: "自分",
+                        content: content,
+                        date: new Date().getTime()
+                    }, function (e) {});
+                    $("#content").val("");
+                }
+
+
+                //　呼ばれた時のニーナの返答
+                function ninaHelloDelay() {
+                    var delay = (Math.random() * 5 ) * 1000;
+                    setTimeout(ninaHello,delay);
+                }
+
+                function ninaHello() {
+                    comment = ninaHelloSelect();
+                    ds.push({
+                        name: "bot",
+                        content: comment,
+                        date: new Date().getTime()
+                    }, function (e) {});
+                }
+
+                function ninaHelloSelect() {
+                    var comment = [
+                        "ま、まじですか…！僕がやめさせてあげましょうか？",
+                        "へえ…ちょっと一旦考え直してみません？"
+                        
+                    ];
+                    var result = Math.floor(Math.random() * comment.length);
+                    return comment[result];
+                }
+
+                //　ニーナ投稿までの時間をランダムに。5秒以下で。
+                function postDelay() {
+                    var delay = (Math.random() * 3 ) * 1000;
+                    setTimeout(ninaComment,delay);
+                }
+
+                //　投稿
+                $('#post').click(function () {
+                    post();
+                })
+                $('#content').keydown(function (e) {
+                    if (e.which == 13) {
+                        post();
+                        return false;
+                    }
+                });
+
+                // ニーナコメント
+                function ninaComment() {
+                    comment = ninaCommentSelect();
+                    ds.push({
+                        name: "bot",
+                        content: comment,
+                        date: new Date().getTime()
+                    }, function (e) {});
+                }
+
+                var num = 0;
+                function ninaCommentSelect() {
+                    var comment = [
+                        "ちぇっ。買っちゃうのか。",
+
+                        "なるほど。。。値段的にはどーなんですか？無理して買っちゃうと来月の生活に響くようならやめておいた方が…。",
+                        
+                        "ほうほう。それって今でしか手に入らないものなんですか？後で実はネットで安く買えたりとかないんですかね？",
+                        
+                        "へえ〜！なるほど！一時的な流行ものだと意外とすぐに必要なくなったりしますけど、そういう感じでもないんですか？",
+                        
+                        "ふむふむ…。その商品の評判とか口コミとかって調べました？調べたとしたらどんな感じでした？",
+                        
+                        "そうなんですね〜。ちなみにそれって自分へのご褒美とかだったりしますか？そうであればいいんですけど、たまたま街で見かけたとかだと、一旦考え直した方がいいかなと思って…。",
+
+                        "そうなんですね…！でも今すぐ買わずに、ちょっと考え直した方がいいですよ！そもそも、同じようなもの持ってたりしないですか？"
+                    ];
+                    //数字をランダムにする
+                    // var num = Math.floor(Math.random() * comment.length);
+
+                    //numをまず0にする
+                    //num++で数字を1アップ
+                    num++;
+                    //その数字のコメントを表示する
+
+                    if(num < comment.length){
+                        return comment[num];
+                    } else {
+                        return comment[0]
+                    }
+
+                }
+
+            });
+
+            //インジェクション対策
+            function escapeHTML(val) {
+                return $('<div>').text(val).html();
+            };
+
+            // 投稿欄下の時計をリアルタイム更新
+            window.onload = function() {
+                setInterval("timeCount()",10);
+            }
+            // 現在時刻を取得、日本時間フォーマットで表示
+            function timeCount() {
+                var dtObj = new Date();
+                $("#timestamp-now").html(jpDateTime(dtObj.getTime()));
+            }
+        </script>
+    </head>
+    <body>
+       <div id="header">
+            <div class="header-center">
+                <h1 id="chat-title">botとチャットしまーす <span>| Milkcocoa でチャットアプリ</span></h1>
+            </div>
+       </div>
+        <div id="container">
+            <div id="messages" class="message">
+                <div id="dummy"></div>
+            </div>
+        </div>
+
+        <div id="footer">
+            <div class="footer-center">
+                    <p class="message myself">
+                        <span class="speaker-icon"><img src="images/speaker3.png" alt="自分"><span class="speaker-name">自分</span></span>
+                        <span class="message-content"><textarea id="content" placeholder="Enterで投稿" autofocus></textarea></span>
+                        <span id="timestamp-now" class="timestamp-right"></span>
+                    </p>
+<!--                <button id="post" class="postarea-button">投稿する</button>-->
+            </div>
+        </div>
+    </body>
+</html>
