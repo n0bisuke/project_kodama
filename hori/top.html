@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+	<html lang="ja">
+	<head>
+		<meta charset="UTF-8">
+		<title>TOP</title>
+		<link rel="stylesheet" href="./css/reset.css">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+		<script src="./js/t.min.js"></script>
+		<style>
+
+			.header{
+				background-color: #0068a7;
+				overflow: hidden;
+				padding: 24px 0;
+			}
+			.logo h1{
+				color: #edf1e2;
+				font-size: 24px;
+			}
+
+			.logo{
+				float: left;
+			}
+
+			.menuList{
+				float: right;
+				width: 400px;
+			}
+
+			.menuList ul li a{
+				float: left;
+				margin-left: 30px;
+				text-decoration: none;
+				color: #edf1e2;
+				padding-right: 30px;
+			}
+			.contents{
+				clear: both;
+				background-color: #0068a7;
+				padding: 80px 0;
+			}
+
+			.copy{
+				font-size: 48px;
+				color: #edf1e2;
+				text-align: center;
+				margin-bottom: 144px;
+				letter-spacing: 2px;
+			}
+
+			.btn{
+				width:300px;
+				margin: 50px auto; 
+			}
+
+			.btn button{
+				width: 147px;
+				font-size: 16px;
+				background-color: #edf1e2;
+				color: #0059a1;
+				border: none;
+				border-radius: 4px;
+				transition: all .5s;
+				cursor: pointer;
+				letter-spacing: 2px;
+			}
+
+			.btn button:hover{
+				letter-spacing: 4px;
+				font-size: 18px;
+				background-color: #f8d815;
+			}
+
+			.footer{
+				text-align: center;
+				background-color: #0068a7;
+				color: #edf1e2;
+				padding: 50px 0;
+			}
+
+		</style>
+	</head>
+	<body>
+		<div class="wrapper">
+			<div class="header">
+				<div class="logo">
+					<h1>MoneyLocation</h1>
+				</div>
+				<div class="menuList">
+					<ul>
+						<li><a href="#">ホーム</a></li>
+						<li><a href="#">使い方</a></li>
+						<li><a href="#">お問い合わせ</a></li>
+					</ul>
+				</div>
+			</div>
+
+			<div class="contents">
+				<div class="copy">
+					無駄遣いを、可視化しよう。
+				</div>
+				<div class="btn">
+					<button>新規登録</button>
+					<button onclick="location.href='main.html'">ログイン</button>
+				</div>
+			</div>
+
+			<div class="footer">
+				<small>&copy; 2016 Masanari Hori</small>
+			</div>
+		</div>
+
+		<script>
+
+			$('.copy').t({
+			    speed:70,          // タイピングのスピードを指定
+			    speed_vary:false,  // 文字ごとのスピードが変わる。
+				caret:true,
+			}); 
+		</script>
+	</body>
+	</html>	

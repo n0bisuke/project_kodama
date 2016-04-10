@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+	<meta charset="UTF-8">
+	<title>メインページ</title>
+	<link rel="stylesheet" href="./css/main-style.css">
+  <link rel="stylesheet" href="./css/tiny-toggle.css" >
+  <link rel="stylesheet" href="http://fonts.googleapis.com/earlyaccess/notosansjapanese.css">
+	<script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?key=AIzaSyBouRngjBWxP4S7H1wqfShSsPkserg0xBw"></script>
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+<script src="./js/tiny-toggle.js" type="text/javascript"></script>
+  <script src="./js/togglebtn.js"></script>
+	<style>
+  body{
+    margin: 0;
+    font-family: 'Noto Sans Japanese', serif;
+    /*background-color: #e0e0e0;*/
+  }
+		#contents{
+			width: 90%;
+			margin: 0 auto;
+      padding-bottom: 24px;
+      overflow: hidden;
+     
+		}
+
+    #header{
+      border: 1px solid #e0e0e0;
+      background-color: rgba(0,104,167,0.8);
+    }
+
+    #header h2{
+      color: #edf1e2;
+    }
+    #time{
+      color: #edf1e2;
+    }
+
+		#map{
+			width: 70%;
+			/*border: solid 1px  #e0e0e0;*/
+			height: 500px;
+			float: right;
+		}
+		#sub{
+			width: 30%;
+			/*border: solid 1px  #e0e0e0;*/
+			float: right;
+
+      height: 500px;
+      overflow: scroll;
+		}
+		#list{
+     /* width: 900px;
+      margin: 0 auto;*/
+			clear: both;
+      text-align: center;
+      margin-bottom: 24px;
+		}
+    #sub ul{
+      margin: 0;
+    }
+     
+
+    #sub li{
+      list-style-type: none;
+      background-color: #0068a7;
+      border-bottom: solid 1px white;
+      margin: 0;
+      cursor: pointer;
+      padding: 15px;
+      color: white;
+      text-decoration: none;
+      transition: all .3s;
+      letter-spacing: 2px;
+    }
+
+   /* #sub li:hover{
+      letter-spacing: 3px;
+      background-color: #f8d815;
+      color: #0068a7;
+    }*/
+
+    #sub ul li a {
+      color: white;
+      text-decoration: none;
+    }
+
+    table td,table th{
+      border: 1px solid #e0e0e0;
+      width: 200px;
+    }
+
+    table{
+      border-collapse: collapse;
+      margin: 0 auto;
+    }
+
+    #registerbtn{
+      width: 250px;
+      margin: 0 auto;
+    }
+    #registerbtn button{
+      text-align: center;
+      width: 80%;
+      margin: 0 auto;
+      letter-spacing: 2px;
+      padding: 10px;
+      font-size: 14px;
+      cursor: pointer;
+      color: #fff;
+      background-color: #0068a7;
+      border: none;
+    }
+
+
+	</style>
+</head>
+<body>
+
+<div class="box"></div>
+<!-- 全体 -->
+<div id="header">
+  <h2>MoneyLocation</h2>
+  <div id="time"></div>  
+</div>
+
+<div id="contents">
+<!-- 地図 -->
+	<div id="map">
+		
+	</div>	
+<!-- 地図終わり -->
+
+<!-- 登録地点 -->
+	<div id="sub">
+		<ul>
+			<li><a href="data.html">R-STORE</a></li>
+			<li><a href="#">BOOK AND BED TOKYO</a></li>
+			<li><a href="#">いいオフィス</a></li>
+			<li><a href="#">デジタルハリウッド大学</a></li>
+			<li><a href="#">ファミリーマート 町屋8丁目店</a></li>
+      <li><a href="#">moja 渋谷店</a></li>
+      <li><a href="#">タケさんの店</a></li>
+      <li><a href="#">東京体育館</a></li>
+      <li><a href="#">りょーじの店</a></li>
+      <li><a href="#">日比谷のスタバ</a></li>
+      <li><a href="#">最寄駅のコンビニ</a></li>
+      <li><a href="#">取引先の食堂</a></li>
+		</ul>
+	</div>
+<!-- 登録地点終わり -->
+</div>
+
+<!-- 地点毎の支出リストテーブル -->
+
+  <div id="list">
+    <table>
+      <tr>
+        <th>場所</th>
+        <th>金額</th>
+        <th>時間</th>
+        <th>無駄遣い?</th>
+      </tr> 
+
+      <tr>
+        <td>いいオフィス</td>
+        <td>300円</td>
+        <td>2016/04/10 18:43:55</td>
+        <td><input type="checkbox" id="my-checkbox" name="my_option" class="tiny-toggle" data-tt-size="large"
+></td>
+      </tr>  
+
+      <tr>
+        <td>デジタルハリウッド大学</td>
+        <td>380円</td>
+        <td>2016/04/9 23:00:30</td>
+        <td><input type="checkbox" id="my-checkbox" name="my_option" class="tiny-toggle" data-tt-size="large"
+></td>
+      </tr> 
+
+      <tr>
+        <td>R-STORE</td>
+        <td>4,500円</td>
+        <td>2016/04/8 13:42:20</td>
+        <td><input type="checkbox" id="my-checkbox" name="my_option" class="tiny-toggle" data-tt-size="large"
+></td>
+      </tr>  
+
+      <tr>
+        <td>BOOK AND BED TOKYO</td>
+        <td>100円</td>
+        <td>2016/04/7 17:40:18</td>
+        <td><input type="checkbox" id="my-checkbox" name="my_option" class="tiny-toggle" data-tt-size="large"
+></td>
+      </tr>  
+
+      <tr>
+        <td>R-STORE</td>
+        <td>1,300円</td>
+        <td>2016/04/6 11:45:30</td>
+        <td><input type="checkbox" id="my-checkbox" name="my_option" class="tiny-toggle" data-tt-size="large"
+></td>
+      </tr>   
+    </table>
+  </div>
+  <!-- 地点毎の支出リスト終わり -->
+<!-- 
+<label class="switch switch-left-right">
+  <input class="switch-input" type="checkbox" />
+  <span class="switch-label" data-on="On" data-off="Off"></span> 
+  <span class="switch-handle"></span> 
+</label> -->
+
+<!-- 新規地点登録ボタン -->
+<div id="registerbtn">
+  <button id="newmapregister" onclick="location.href='searchmap.php'">場所を新しく登録する</button>
+</div>
+<!-- 新規地点登録ボタン終わり -->
+
+<script>
+$(function(){
+  $('#sub li').on('mouseover',function(){
+    $(this).css({
+      'background-color': '#f8d815',
+      'letter-spacing':'3px'
+    });
+    $(this).find('a').css('color','#0068a7');
+  });
+  $('#sub li').on('mouseout',function(){
+    $(this).css({
+      'background-color': '#0068a7',
+      'letter-spacing':'2px'
+    });
+    $(this).find('a').css('color','#fff');
+  });
+
+});
+
+function map_canvas() {
+//マーカーの情報を配列に入れる
+  var data = new Array();
+//緯度と経度とurlの情報をdata内に入れる。以下、要編集。
+
+//R-STORE OFFICE
+    data.push({
+      name:'R-STORE',
+      lat: '35.629343', //緯度
+      lng: '139.715401', //経度
+      content: 'R-STORE',
+      url: 'http://www.r-store.jp/' //リンク先
+    });
+//代々木公園 立地と配置
+    data.push({
+      name:'代々木公園 立地と配置',
+      lat: '35.6690733000',
+      lng: '139.6904072000',
+      url: 'http://www.r-store.jp/room/82030'
+  });
+//中目黒 ウイスキーが、お好きでしょ
+    data.push({
+      name:'中目黒 ウイスキーが、お好きでしょ',
+      lat: '35.6497423000',
+      lng: '139.6913938000',
+      url: 'http://www.r-store.jp/room/81985'
+  });
+
+//綱島 住めば都の綱島ライフ(withペット) 
+    data.push({
+      name:'綱島 住めば都の綱島ライフ(withペット)',
+      lat: '35.5329647000',
+      lng: '139.6578051000',
+      url: 'http://www.r-store.jp/room/81922'
+  });
+
+//巣鴨  キッチンびいき
+    data.push({
+      name:'巣鴨  キッチンびいき',
+      lat: '35.7408057000',
+      lng: '139.7289094000',
+      url: 'http://www.r-store.jp/room/82592'
+  });
+
+//狛江　イイトコドリレトロ
+    data.push({
+      name:'狛江　イイトコドリレトロ',
+      lat: '35.6388657000',
+      lng: '139.5746126000',
+      url: 'http://www.r-store.jp/room/81264'
+  });
+
+//等々力 白と無垢のデザイナーズ
+    data.push({
+      name:'等々力 白と無垢のデザイナーズ',
+      lat: '35.6084687000',
+      lng: '139.6432802000',
+      url: 'http://www.r-store.jp/room/82516'
+  });
+//緑が丘 1DK+土間
+    data.push({
+      name:'緑が丘 1DK+土間',
+      lat: '35.6079441000',
+      lng: '139.6779240000',
+      url: 'http://www.r-store.jp/room/20466'
+  });
+//祐天寺 コンパクトカフェ
+    data.push({
+      name:'祐天寺 コンパクトカフェ',
+      lat: '35.6401289000',
+      lng: '139.6899808000',
+      url: 'http://www.r-store.jp/room/79980'
+  });
+//目黒 ゴージャスバスタイム
+    data.push({
+      name:'目黒 ゴージャスバスタイム',
+      lat: '35.6351919000',
+      lng: '139.7043180000',
+      url: 'http://www.r-store.jp/room/80734'
+  });
+    //10終わり
+
+//初期位置に、上記配列の一番初めの緯度経度を格納
+  var latlng = new google.maps.LatLng(data[0].lat, data[0].lng); //データの0番目のlatとlngを初期値に設定
+
+//地図の設定を決める
+  var opts = {
+    zoom: 13,//地図の縮尺
+    center: latlng, //初期位置
+    scrollwheel: false,
+    // mapTypeId: google.maps.MapTypeId.ROADMAP//地図形態
+    mapTypeControlOptions: { mapTypeIds: ['style', google.maps.MapTypeId.ROADMAP] }
+    };
+ 
+//地図を表示させるエリアのidを指定し、オプションを設定した地図をmapという変数に入れる
+  var map = new google.maps.Map(document.getElementById('map'), opts);
+  // var markers = new Array();
+
+//マーカーを配置するループを実行
+  for (i = 0; i < data.length; i++) {
+    var markers = new google.maps.Marker({
+      position: new google.maps.LatLng(data[i].lat, data[i].lng), //マーカの位置を指定しdataのi番目の緯度と経度をセット
+      map: map //map = new google.maps.Map(document.getElementById('map'),opts)これによってマップを生成。
+    });
+
+    var contentsdetail = '<p>' + data[i].name + '</p>'
+    // console.log(data[i].name)
+    var infowindow = new google.maps.InfoWindow({
+      content: contentsdetail
+    });
+  
+    showwindow();
+   
+  }
+
+  function showwindow(){
+    markers.addListener('click', function() {
+      infowindow.open(map, markers);
+    });
+    console.log(markers);
+  }
+
+  var styleOptions = [
+ 
+/*★★ここからカスタマイズしたデザインのJSONコードを貼り付け！★★*/
+    {
+    "stylers": [
+      { "hue": "#0077ff" }
+    ]
+  },{
+    "featureType": "road.highway",
+    "stylers": [
+      { "visibility": "off" }
+    ]
+  },{
+    "featureType": "administrative",
+    "stylers": [
+      { "visibility": "off" }
+    ]
+  },{
+    "featureType": "poi",
+    "stylers": [
+      { "visibility": "simplified" }
+    ]
+  },{
+    "featureType": "road",
+    "elementType": "labels.icon",
+    "stylers": [
+      { "visibility": "off" }
+    ]
+  }   
+/*★★ここまでカスタマイズしたデザインのJSONコードを貼り付け！★★*/
+ 
+];
+
+  var styledMapOptions = { name: 'サンプル' }/*地図右上のタイトル*/
+  var sampleType = new google.maps.StyledMapType(styleOptions, styledMapOptions);
+  map.mapTypes.set('style', sampleType);
+  map.setMapTypeId('style');
+
+  var date = new Date();
+  var hours = date.getHours(); 
+  console.log(hours)
+
+  //地図を条件によって変化させる
+  if(hours == 14){
+    var styleOptions = [
+ 
+/*★★ここからカスタマイズしたデザインのJSONコードを貼り付け！★★*/
+    {
+    "stylers": [
+      { "hue": "#e0e0e0" }
+    ]
+  },{
+    "featureType": "road.highway",
+    "stylers": [
+      { "visibility": "off" }
+    ]
+  }
+/*★★ここまでカスタマイズしたデザインのJSONコードを貼り付け！★★*/
+ 
+];
+
+var styledMapOptions = { name: 'サンプル' }/*地図右上のタイトル*/
+  var sampleType = new google.maps.StyledMapType(styleOptions, styledMapOptions);
+  map.mapTypes.set('style', sampleType);
+  map.setMapTypeId('style');
+  }
+
+}
+
+// // マーカーにクリックイベントを追加
+// function markerpush() {
+//     markers.addListener('click', function() { // マーカーをクリックしたとき
+//         infowindow.open(map, markers); // 吹き出しの表示
+//     });
+// }
+
+
+//マーカーをマウスオーバー
+// function markerInfo(marker, name) {
+//     google.maps.event.addListener(marker, 'mouseover', function (event) {
+//         new google.maps.InfoWindow({
+//             content: name
+//         }).open(marker.getMap(), marker);
+//     });
+// }
+//マーカーをマウスオーバー 終わり
+
+function count_time(){
+      var timer = document.getElementById('time');
+      var date = new Date();
+      var hours = date.getHours();
+      var minutes = date.getMinutes();
+      var seconds = date.getSeconds();
+      timer.innerHTML = date.toLocaleString();
+    }
+window.onload = function(){
+      setInterval(count_time,1000);
+    }
+
+
+//地図描画を実行
+google.maps.event.addDomListener(window, 'load', map_canvas);
+
+$(".tiny-toggle").tinyToggle();
+
+
+
+</script>
+
+</body>
+</html>
