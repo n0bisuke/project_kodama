@@ -2,121 +2,84 @@
 	<html lang="ja">
 	<head>
 		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1">
 		<title>TOP</title>
 		<link rel="stylesheet" href="./css/reset.css">
+		<link rel="stylesheet" href="./css/top-style.css">
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
-		<script src="./js/t.min.js"></script>
-		<style>
-
-			.header{
-				background-color: #0068a7;
-				overflow: hidden;
-				padding: 24px 0;
-			}
-			.logo h1{
-				color: #edf1e2;
-				font-size: 24px;
-			}
-
-			.logo{
-				float: left;
-			}
-
-			.menuList{
-				float: right;
-				width: 400px;
-			}
-
-			.menuList ul li a{
-				float: left;
-				margin-left: 30px;
-				text-decoration: none;
-				color: #edf1e2;
-				padding-right: 30px;
-			}
-			.contents{
-				clear: both;
-				background-color: #0068a7;
-				padding: 80px 0;
-			}
-
-			.copy{
-				font-size: 48px;
-				color: #edf1e2;
-				text-align: center;
-				margin-bottom: 144px;
-				letter-spacing: 2px;
-			}
-
-			.btn{
-				width:300px;
-				margin: 50px auto; 
-			}
-
-			.btn button{
-				width: 147px;
-				font-size: 16px;
-				background-color: #edf1e2;
-				color: #0059a1;
-				border: none;
-				border-radius: 4px;
-				transition: all .5s;
-				cursor: pointer;
-				letter-spacing: 2px;
-			}
-
-			.btn button:hover{
-				letter-spacing: 4px;
-				font-size: 18px;
-				background-color: #f8d815;
-			}
-
-			.footer{
-				text-align: center;
-				background-color: #0068a7;
-				color: #edf1e2;
-				padding: 50px 0;
-			}
-
-		</style>
+		<script src="./js/top.js"></script>
+		
 	</head>
 	<body>
-		<div class="wrapper">
-			<div class="header">
-				<div class="logo">
-					<h1>MoneyLocation</h1>
-				</div>
-				<div class="menuList">
-					<ul>
+
+	<!-- header -->
+	<header>
+		<div class="logo">
+			<h1>MoneyLocation</h1>
+		</div>
+		<div class="menubtn">
+			<ul>
+				<li><a href="#" id="menubtn">MENU</a>
+					<ul class="menulist">
 						<li><a href="#">ホーム</a></li>
 						<li><a href="#">使い方</a></li>
-						<li><a href="#">お問い合わせ</a></li>
+						<li><a href="#">問い合わせ</a></li>
 					</ul>
-				</div>
+				</li>
+			</ul>
+		</div>
+	</header>
+	<div class="contents">
+		<div class="main">
+			<h2>ムダ使いを、可視化しよう。</h2>
+			<div class="btn">
+				<input type="submit" value="新規登録" onclick="login.php">
+				<input type="submit" value="ログイン" onclick="register.php">
 			</div>
-
-			<div class="contents">
-				<div class="copy">
-					無駄遣いを、可視化しよう。
+			<img src="./img/topimg.jpg" alt="キービジュアル">
+			
+		</div>
+		<div class="sub">
+			<!-- ここにアイコンが入ります -->
+			<h3>使い方</h3>
+			<div class="icon">
+				<div class="iconbox">
+					<img src="img/icon1.png" alt="使い方1" width="80" height="80">
+					<p>買い物した場所を登録する</p>
 				</div>
-				<div class="btn">
-					<button>新規登録</button>
-					<button onclick="location.href='main.html'">ログイン</button>
-				</div>
-			</div>
 
-			<div class="footer">
-				<small>&copy; 2016 Masanari Hori</small>
+				<div class="iconbox">
+					<img src="img/icon1.png" alt="使い方1" width="80" height="80">
+					<p>使ったお金を記録する</p>
+				</div>
+
+				<div class="iconbox">
+					<img src="img/icon1.png" alt="使い方1" width="80" height="80">
+					<p>無駄遣いの仕分けをする</p>
+
+				</div>
+
+				<div class="iconbox">
+					<img src="img/icon1.png" alt="使い方1" width="80" height="80">
+					<p>無駄遣いの場所を知らせる</p>
+				</div>
 			</div>
 		</div>
+		<div class="inquiry">
+			<h3>お問い合わせ</h3>
+			<form action="">
+				<input type="text" size="30" name="name" placeholder="お名前を入力してください"><br>
+				<input type="text" size="30" name="email" placeholder="メールアドレスを入力してください"><br>
+				<textarea name="inquiry" id="inquiry" cols="40" rows="10" placeholder="お問い合わせ内容を入力してください"></textarea><br>
+				<input type="submit" value="送信する">
+			</form>
+		</div>
+	</div>
 
-		<script>
+	<footer>
+		<p><small>&copy;2016 Masanar Hori</small></p>
+	</footer>
+		
 
-			$('.copy').t({
-			    speed:70,          // タイピングのスピードを指定
-			    speed_vary:false,  // 文字ごとのスピードが変わる。
-				caret:true,
-			}); 
-		</script>
 	</body>
 	</html>	
